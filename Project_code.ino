@@ -272,7 +272,7 @@ void loop() // run over and over again
         {
             flag=0;
             
-            sprintf(final_str, "%s#%d/%2.4f", final_str, id_champ_electrique, mesure_moy); 
+            sprintf(final_str, "%s#%d/%2.4f", final_str, id_champ_electrique, champElectrique); //adding elctromagnetic field value to the LoRa frame
             sprintf(final_str, "%s#%d/%2.4f", final_str, id_longitude, longitude);//adding longitude data to the LoRa frame
             sprintf(final_str, "%s#%d/%2.4f", final_str, id_latitude, latitude); //adding latitude data to the LoRa frame
         
