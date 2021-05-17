@@ -5,14 +5,13 @@
 #define PIN_ANALOGIQUE 15 // 15 => pin A0
 #define RESOLUTION 12 // ADC 12 bits => 4096 values
 #define PERIODE_CAN_MS 10 // période d'écahtillonage (en négligeant les traitements)
-#define NOMBRE_MOYENNE 100
+#define NOMBRE_MOYENNE 1000
 
 
 // Cartographie du capteur et étalonage
 #define NBR_POINT 10
 double  carto_dBm[NBR_POINT] = {   -30,   -25,   -20,  -15,   -10,    -5,    0,    5,   10,  12}; // correspond à l'axe y de la cartographie
 double carto_Volt[NBR_POINT] = { 0.124, 0.129, 0.146, 0.19, 0.315, 0.543, 1.05, 1.94, 3.29, 3.3}; // @3.6GHz, correpond à l'axe x de la cartographie // carte connecteur SMA
-// double carto_Volt[NBR_POINT] = { 0.1192, 0.1224, 0.1329, 0.1643, 0.255, 0.465, 0.904, 1.669, 3.02 }; // @3.6GHz, correpond à l'axe x de la cartographie // carte connecteur UMCC
 
 #define GAIN_ANTENNE 32.74 // rapport dBm -> dBm/m
 
@@ -268,7 +267,6 @@ void loop() // run over and over again
             LoRa.endPacket();
             Serial.println("Switch to puissance saving mode\n");
             LoRa.sleep();
-            delay(5000);
         }
         else
         {
@@ -287,7 +285,6 @@ void loop() // run over and over again
             LoRa.endPacket();
             Serial.println("Switch to power saving mode\n");
             LoRa.sleep();
-            delay(10000);
         }  
     }
     else
