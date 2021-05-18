@@ -13,6 +13,9 @@ Adafruit_GPS GPS(&GPSSerial);
 uint32_t timer = millis();
 
 void setup() {
+  
+  Serial.begin(115200);
+  
   PORT->Group[PORTA].DIRSET.reg = PORT_PA21;               // Set D7 as a digital output
   
   GCLK->CLKCTRL.reg = GCLK_CLKCTRL_CLKEN |                 // Enable GCLK0 for TC4 and TC5
@@ -36,6 +39,19 @@ void setup() {
 
   TC4->COUNT16.CTRLA.bit.ENABLE = 1;                       // Enable the TC4 timer
   while (TC4->COUNT16.STATUS.bit.SYNCBUSY);                // Wait for synchronization
+  
+  Serial.println("Adafruit GPS library basic parsing test!");
+
+  // 9600 NMEA is the default baud rate for Adafruit MTK GPS's- some use 4800
+  GPS.begin(9600);
+  GPS.sendCommand(PMTK_SET_NMEA_OUTPUT_RMCGGA);
+  GPS.sendCommand(PMTK_SET_NMEA_UPDATE_1HZ); // 1 Hz update rate
+  GPS.sendCommand(PGCMD_ANTENNA);
+
+  delay(1000);
+
+  // Ask for firmware version
+  GPSSerial.println(PMTK_Q_RELEASE);
 }
 
 void loop() {}
