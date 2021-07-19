@@ -13,6 +13,7 @@ Adafruit_GPS GPS(&GPSSerial);
 uint32_t timer = millis();
 
 void setup() {
+Serial.begin(112500);
 Serial.println("Adafruit GPS library basic parsing test!");
 
 // 9600 NMEA is the default baud rate for Adafruit MTK GPS's- some use 4800
