@@ -20,6 +20,7 @@ float information2;
 char message[100];
 
 void setup(){
+  Serial.begin(9600);
   Serial.println("Set LoRa modulation\r\n");
   Serial.println("Set LoRa\r\n");
   
